@@ -196,7 +196,7 @@ YoloV8DetectorTRT::~YoloV8DetectorTRT() {
   delete runtime;
 }
 
-#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR == 3)
+#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR >= 3)
 Logger logger;
 
 void YoloV8DetectorTRT::Init(std::string model_path) {
