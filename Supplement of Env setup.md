@@ -11,6 +11,7 @@ If the CUDA version in your system environment is not 12.2, then you
 must set the CUDA path manually using environment variables(Minimum
 Requirement:11.8):
 
+'''
 export CUDAToolkit\_ROOT=/usr/local/cuda-12.2
 
 export CUDA\_HOME=\$CUDAToolkit\_ROOT
@@ -18,6 +19,7 @@ export CUDA\_HOME=\$CUDAToolkit\_ROOT
 export PATH=\$CUDA\_HOME/bin:\$PATH
 
 export LD\_LIBRARY\_PATH=\$CUDA\_HOME/lib64:\$LD\_LIBRARY\_PATH
+'''
 
 **3.TensorRT verison:**\
 Why do not use TensorRT8.6?
