@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR == 3)
+#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR >= 3)
 int main(int argc, char** argv) {
 	std::cout << "hello world!" << std::endl;
 }
