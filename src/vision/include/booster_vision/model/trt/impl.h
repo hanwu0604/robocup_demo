@@ -49,7 +49,7 @@ class YoloV8DetectorTRT : public booster_vision::YoloV8Detector {
   std::string cuda_post_process = "g";
 };
 
-#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR == 3)
+#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR >= 3)
 struct InferDeleter
 {
 	template <typename T>
