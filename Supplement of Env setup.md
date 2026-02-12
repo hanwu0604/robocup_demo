@@ -210,9 +210,7 @@ cp ./scripts/vision/exported\_model/model.engine ./src/vision/model/
 
 **7.Command error on "Start the simulation environment"**
 
-![](media/image1.png){width="5.109375546806649in"
-height="4.811519028871391in"}
-
+ 
 cd \~/Workspace/tools
 
 ./isaac\_package\_0.0.6.run /home/han/isaacsim4.2/python.sh
