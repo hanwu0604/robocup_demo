@@ -3,7 +3,7 @@
 **1. Configuration environment**
 
 Need to configure it on the system environment, do conda deactivate
-until there is no (Env\_name) beyond the terminal line.
+until there is no (Env_name) beyond the terminal line.
 
 **2.CUDA version mismatch**
 
@@ -12,13 +12,13 @@ must set the CUDA path manually using environment variables(Minimum
 Requirement:11.8):
 
 ``` yaml
-export CUDAToolkit\_ROOT=/usr/local/cuda-12.2
+export CUDAToolkit_ROOT=/usr/local/cuda-12.2
 
-export CUDA\_HOME=\$CUDAToolkit\_ROOT
+export CUDA_HOME=\$CUDAToolkit_ROOT
 
-export PATH=\$CUDA\_HOME/bin:\$PATH
+export PATH=\$CUDA_HOME/bin:\$PATH
 
-export LD\_LIBRARY\_PATH=\$CUDA\_HOME/lib64:\$LD\_LIBRARY\_PATH
+export LD_LIBRARY_PATH=\$CUDA_HOME/lib64:\$LD_LIBRARY_PATH
 ```
 
 **3.TensorRT verison:**\
@@ -40,30 +40,30 @@ In that case, you need to modify the corresponding elif conditions in
 the following file to match your installed TensorRT version.
 ``` yaml
 
-～/Workspace/booster/robocup\_demo
+～/Workspace/booster/robocup_demo
 
-src/vision/include/booster\_vision/model/trt/impl.h
+src/vision/include/booster_vision/model/trt/impl.h
 
 src/vision/src/model/trt/impl.cpp
 
-src/vision/src/model/trt/yolov8\_det.cpp
+src/vision/src/model/trt/yolov8_det.cpp
 ``` 
 Find:
 ``` yaml
 
-elif (NV_TENSORRT_MAJOR == 10) && (NV\_TENSORRT\_MINOR = 3)
+elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR = 3)
 ``` 
 Change it to
 
 ``` yaml
-\#elif (NV\_TENSORRT\_MAJOR == 10) && (NV\_TENSORRT\_MINOR \>=3)
+\#elif (NV_TENSORRT_MAJOR == 10) && (NV_TENSORRT_MINOR \>=3)
 ``` 
 
 **4. If there is an error related to NvInferVersion.h**
 ``` yaml
 Error
 
-/home/han/Workspace/booster/robocup\_demo/src/vision/src/model/trt/postprocess.cpp:1:10:
+/home/han/Workspace/booster/robocup_demo/src/vision/src/model/trt/postprocess.cpp:1:10:
 fatal error: NvInferVersion.h: No such file or directory
 ``` 
 1 \| \#include \<NvInferVersion.h\>
@@ -78,20 +78,20 @@ src/vision/src/model/trt/CMakeLists.txt
 Add the following at the top (adjust the path to match your TensorRT
 installation):
 ``` yaml
-set(TENSORRT\_ROOT /usr/local/TensorRT-10.8.0.43)
+set(TENSORRT_ROOT /usr/local/TensorRT-10.8.0.43)
 
-include\_directories(\${TENSORRT\_ROOT}/include)
+include_directories(\${TENSORRT_ROOT}/include)
 
-link\_directories(\${TENSORRT\_ROOT}/lib)
+link_directories(\${TENSORRT_ROOT}/lib)
 ```
 
-Then update target\_link\_libraries to make the TensorRT linkage more
+Then update target_link_libraries to make the TensorRT linkage more
 explicit (to ensure it resolves to TensorRT 10.8):
 ``` yaml
-target\_link\_libraries(yolov8\_trt PRIVATE nvinfer nvinfer\_plugin
-nvonnxparser cudart PUBLIC \${OpenCV\_LIBS})
+target_link_libraries(yolov8_trt PRIVATE nvinfer nvinfer_plugin
+nvonnxparser cudart PUBLIC \${OpenCV_LIBS})
 
-link\_directories(\${TENSORRT\_ROOT}/lib)
+link_directories(\${TENSORRT_ROOT}/lib)
 ``` 
 the linker will prioritize resolving nvinfer from the TensorRT 10.8
 library directory.
@@ -137,7 +137,7 @@ trtexec to convert it into a TensorRT engine.
 Set up environment should include PyTorch, Ultralytics, and related
 dependencies.
 ``` yaml
-cd \~/Workspace/booster/robocup\_demo
+cd \~/Workspace/booster/robocup_demo
 
 \# Verify det.pt exists (your script uses scripts/vision/model/det.pt)
 
@@ -179,7 +179,7 @@ trtexec \--version
 Run the following commands in the **root directory of the
 repository**:
 ``` yaml
-cd \~/Workspace/booster/robocup\_demo
+cd \~/Workspace/booster/robocup_demo
 
 export PATH=/usr/local/TensorRT-10.8.0.43/bin:\$PATH
 
@@ -187,7 +187,7 @@ trtexec \\
 
 \--onnx=scripts/vision/model/det.onnx \\
 
-\--saveEngine=scripts/vision/exported\_model/model.engine \\
+\--saveEngine=scripts/vision/exported_model/model.engine \\
 
 \--fp16 \\
 
@@ -213,20 +213,20 @@ trtexec \\
     > afterward (faster and cleaner).
 
 Once the process is completed successfully, you will find model.engine
-in ./scripts/vision/exported\_model folder.
+in ./scripts/vision/exported_model folder.
 
-ls ./scripts/vision/exported\_model
+ls ./scripts/vision/exported_model
 
 Copy model.engine to vision folder.
 
-cp ./scripts/vision/exported\_model/model.engine ./src/vision/model/
+cp ./scripts/vision/exported_model/model.engine ./src/vision/model/
 
 **7.Command error on "Start the simulation environment"**
 
  
 cd \~/Workspace/tools
 
-./isaac\_package\_0.0.6.run /home/han/isaacsim4.2/python.sh
+./isaac_package_0.0.6.run /home/han/isaacsim4.2/python.sh
 
 (recommend pass your isaac path)
 
